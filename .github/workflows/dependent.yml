@@ -38,13 +38,18 @@ jobs:
           sudo apt install -y python3 python3-pip python3-venv
 
           #Activate env
+          echo "Creating virtual environment"
           python3 -m venv .venv
-          source .venv/bin/activate
-          python --version
-      
+          ls -la  # Check if .venv exists
+
+      - name: Debug .venv
+        run: ls -la .venv  # List files in the .venv directory
+
       - name: Upload Venv
         uses: actions/upload-artifact@v4
         with:
           name: python-venv
-          path: .venv
+          path: .venv/
+          retention-days: 1
+
       
