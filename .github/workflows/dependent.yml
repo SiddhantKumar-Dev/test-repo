@@ -35,7 +35,7 @@ jobs:
         run: |
           echo "Installing python"
           sudo apt update -yqq
-          sudo apt install python3 python3-pip python3.10-venv -yqq
+          sudo apt install -y python3 python3-pip python3-venv
 
           #Activate env
           python3 -m venv .venv
