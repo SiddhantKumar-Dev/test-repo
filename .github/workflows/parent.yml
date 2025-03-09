@@ -9,7 +9,6 @@ on:
 
 jobs:
   call-child:
-    needs: create-env
     uses: ./.github/workflows/dependent.yml
     with:
       name: ${{ github.event.inputs.name }}
