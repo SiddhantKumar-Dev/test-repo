@@ -5,6 +5,7 @@ on:
       name:
         description: "Your Name"
         required: true
+        type: string
         default: "sid"
 
 jobs:
