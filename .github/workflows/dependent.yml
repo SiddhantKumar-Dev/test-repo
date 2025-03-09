@@ -42,14 +42,17 @@ jobs:
           python3 -m venv .venv
           ls -la  # Check if .venv exists
 
-      - name: Debug .venv
-        run: ls -la .venv  # List files in the .venv directory
+      - name: Move Virtual Environment
+        run: |
+          mkdir -p venv-artifact
+          mv .venv/* venv-artifact/
 
       - name: Upload Venv
         uses: actions/upload-artifact@v4
         with:
           name: python-venv
-          path: .venv/**
+          path: venv-artifact/
           retention-days: 1
+
 
       

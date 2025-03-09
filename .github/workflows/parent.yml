@@ -21,15 +21,19 @@ jobs:
       - name: Checkout repo
         uses: actions/checkout@v4
 
-      - name: Download venv
+      - name: Download Virtual Environment
         uses: actions/download-artifact@v4
         with:
           name: python-venv
-          path: .venv
+          path: venv-artifact/
 
-      - name: Build Kind
-        run : |
+      - name: Restore Virtual Environment
+        run: |
+          mkdir -p .venv
+          mv venv-artifact/* .venv/
+          ls -la .venv  # Verify contents
+
+      - name: Activate Virtual Environment
+        run: |
           source .venv/bin/activate
-          python --version
-          pip list
           python --version
