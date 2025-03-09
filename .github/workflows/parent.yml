@@ -1,0 +1,33 @@
+name: Parent Job
+on:
+  workflow_dispatch:
+    inputs:
+      name:
+        description: "Your Name"
+        required: true
+        default: "sid"
+
+jobs:
+  call-child:
+    needs: create-env
+    user: .github/workflows/dependent.yml
+    with:
+      name: ${{ github.event.inputs.name }}
+
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Download venv
+        uses: actions/download-artifact@v2
+        with:
+          name: python-venv
+          path: .venv
+
+      - name: Build Kind
+        run : |
+          source .venv/bin/activate
+          python --version
+          pip list
