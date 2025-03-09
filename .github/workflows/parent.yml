@@ -10,7 +10,7 @@ on:
 jobs:
   call-child:
     needs: create-env
-    uses: .github/workflows/dependent.yml
+    uses: ./.github/workflows/dependent.yml@v1
     with:
       name: ${{ github.event.inputs.name }}
 
